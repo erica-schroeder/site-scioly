@@ -1,5 +1,10 @@
-export function getImageResolver(baseUrl) {
-    return function resolveImage(fileName) {
-        return new URL(`@/assets/images/${fileName}`, baseUrl).href;
-    }
+export function resolveImage(name) {
+  const images = import.meta.glob("../assets/images/*", {
+    eager: true,
+    import: "default",
+  });
+  const map = Object.fromEntries(
+    Object.entries(images).map(([p, u]) => [p.split("/").pop(), u])
+  );
+  return map[name];
 }

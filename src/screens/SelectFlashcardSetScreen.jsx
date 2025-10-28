@@ -81,7 +81,7 @@ const SelectFlashcardSetScreen = () => {
     const onSetChanged = (event) => {
         const checked = event.target.checked;
         const name = event.target.value;
-        
+
         const fullName = getFullName(name);
 
         const newSets = checked
@@ -109,22 +109,22 @@ const SelectFlashcardSetScreen = () => {
 
     return (
         <Stack display="flex" alignItems="center" spacing={5} mt={10} mb={10}>
-            <Typography level="h4" fontWeight="lg" fontSize={36}>
+            <Typography variant="h4" fontSize={36}>
                 Select Flashcard Sets
             </Typography>
             <Grid container spacing={5} minWidth="300px" flexGrow={1} maxWidth={"sm"}>
 
-                { groups.map(group => {
+                {groups.map(group => {
                     return (
                         <Grid key={group.name} size={6} >
                             <Stack display="flex" alignItems={"center"}>
 
-                                <Typography fontSize={20} component="h5" fontWeight="xl" mb={1}>
+                                <Typography fontSize={20} variant="h5" mb={1}>
                                     {group.label}
                                 </Typography>
 
                                 <List>
-                                    <ListItem>
+                                    <ListItem disablePadding>
                                         <Checkbox
                                             value={group.name}
                                             onChange={onSelectAllGroupChanged}
@@ -136,7 +136,7 @@ const SelectFlashcardSetScreen = () => {
 
                                     {
                                         group.sets.map(set => (
-                                            <ListItem key={set.name}>
+                                            <ListItem disablePadding key={set.name}>
                                                 <Checkbox
                                                     value={set.name}
                                                     checked={selectedSets.includes(getFullName(set.name))}
@@ -155,7 +155,8 @@ const SelectFlashcardSetScreen = () => {
 
             </Grid>
             <Button
-                size="lg"
+                variant='contained'
+                disableElevation
                 disabled={selectedSets.length < 1}
                 component={Link}
                 onClick={() => loadAndShuffleSets(selectedSets)}

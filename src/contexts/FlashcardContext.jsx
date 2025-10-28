@@ -59,7 +59,7 @@ export const FlashcardProvider = ({ children }) => {
     };
 
     const goNext = () => {
-        setCurrentIndex((prev) => Math.min(prev + 1, flashcards.length - 1));
+        setCurrentIndex((prev) => Math.min(prev + 1, flashcards.length));
     };
 
     const currentCard = flashcards[currentIndex] || null;

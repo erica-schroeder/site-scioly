@@ -1,3 +1,15 @@
 export const manifest = {
     blattodea: () => import("@/flashcards/amazing-arthropods/orders/blattodea.js"),
+    coleoptera: () => import("@/flashcards/amazing-arthropods/orders/coleoptera.js"),
+    diptera: () => import("@/flashcards/amazing-arthropods/orders/diptera.js"),
+    ephemeroptera: () => import("@/flashcards/amazing-arthropods/orders/ephemeroptera.js"),
+    hemiptera: () => import("@/flashcards/amazing-arthropods/orders/hemiptera.js"),
+    hymenoptera: () => import("@/flashcards/amazing-arthropods/orders/hymenoptera.js"),
+    lepidoptera: () => import("@/flashcards/amazing-arthropods/orders/lepidoptera.js"),
+    mantodea: () => import("@/flashcards/amazing-arthropods/orders/mantodea.js"),
+    megaloptera: () => import("@/flashcards/amazing-arthropods/orders/megaloptera.js"),
+    neuroptera: () => import("@/flashcards/amazing-arthropods/orders/neuroptera.js"),
+    odonata: () => import("@/flashcards/amazing-arthropods/orders/odonata.js"),
+    orthoptera: () => import("@/flashcards/amazing-arthropods/orders/orthoptera.js"),
+    trichoptera: () => import("@/flashcards/amazing-arthropods/orders/trichoptera.js"),
 };

@@ -2,11 +2,9 @@ import { useFlashcardContext } from '@/contexts/FlashcardContext';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import { IconButton, Stack, Typography } from '@mui/material';
-import withHideable from '../components/withHideable';
+import HideableComponent from '../components/HideableComponent';
 import Flashcard from '@/components/Flashcard';
-
-const HideableIconButton = withHideable(IconButton);
-const HideableTypography = withHideable(Typography);
+import CongratsCard from '@/components/CongratsCard';
 
 const FlashcardScreen = () => {
     const {
@@ -17,38 +15,44 @@ const FlashcardScreen = () => {
         goPrevious,
     } = useFlashcardContext();
 
-    if(currentCard === null) {
+    const isFinished = currentIndex >= numCards;
+    if (!isFinished && (currentCard === null)) {
         return null;
     }
 
-  return (
-    <Stack spacing={2} paddingTop={10} alignItems="center">
-          <Flashcard key={currentIndex}
-              frontText={currentCard.question}
-              frontImage={currentCard.image}
-              backText={currentCard.answer}
-          />
+    return (
+        <Stack spacing={2} paddingTop={10} alignItems="center">
+            {isFinished
+                ? <CongratsCard />
+                : <Flashcard key={currentIndex}
+                    frontText={currentCard.question}
+                    frontImage={currentCard.image}
+                    backText={currentCard.answer}
+                />
+            }
 
-          <Stack maxWidth="sm" sx={{ width: "100%" }} direction="row" alignItems="center" justifyContent="space-evenly" >
-              <HideableIconButton
-                  visible={currentIndex === 0 ? false : true}
-                  onClick={goPrevious}
-              >
-                  <ArrowBackRoundedIcon sx={{ fontSize: 45 }} />
-              </HideableIconButton>
 
-              <HideableTypography
-                  visible={currentIndex < numCards ? true : false}
-              >
-                  {`${currentIndex + 1} / ${numCards}`}
-              </HideableTypography>
+            <Stack maxWidth="sm" sx={{ width: "100%" }} direction="row" alignItems="center" justifyContent="space-evenly" >
+                <HideableComponent visible={currentIndex === 0 ? false : true} >
+                    <IconButton onClick={goPrevious}>
+                        <ArrowBackRoundedIcon sx={{ color: 'black', fontSize: 45 }} />
+                    </IconButton>
+                </HideableComponent>
 
-              <HideableIconButton
-                    visible={currentIndex === numCards - 1 ? false : true}
-                    onClick={goNext}
+                <HideableComponent
+                    visible={currentIndex < numCards ? true : false}
                 >
-                    <ArrowForwardRoundedIcon sx={{ fontSize: 45 }} />
-                </HideableIconButton>
+                    <Typography>
+                        {`${currentIndex + 1} / ${numCards}`}
+                    </Typography>
+                </HideableComponent>
+
+                <HideableComponent visible={currentIndex >= numCards ? false : true}>
+                    <IconButton
+                        onClick={goNext}>
+                        <ArrowForwardRoundedIcon sx={{ color: 'black', fontSize: 45 }} />
+                    </IconButton>
+                </HideableComponent>
             </Stack>
         </Stack>
     );

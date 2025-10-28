@@ -33,4 +33,4 @@ const array = [
     },
 ];
 
-module.exports = array;
+export default array;

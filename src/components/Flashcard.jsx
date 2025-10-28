@@ -1,21 +1,11 @@
-import { Card, CardContent, Divider, Stack, Typography } from '@mui/material';
+import { Card, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import '../styles/flashcard.css';
+import { FlashcardContent } from './FlashcardContent';
+import { resolveImage } from '@/util/resolveImage';
 
 function Flashcard({ frontText, frontImage, backText }) {
     const [isFlipped, setIsFlipped] = useState(false);
-
-    const FlashcardContent = ({ header, headerAlign="left", children }) => (
-        <CardContent sx={{ height: '100%' }}>
-            <Stack sx={{ height: '100%' }}>
-                <Typography variant="h6" textAlign={headerAlign} sx={{ mb: 1 }}>
-                    {header}
-                </Typography>
-                <Divider />
-                {children}
-            </Stack>
-        </CardContent>
-    );
 
     return (
         <div
@@ -27,7 +17,7 @@ function Flashcard({ frontText, frontImage, backText }) {
                     <FlashcardContent header="Question">
                             <Stack spacing={3} justifyContent="center" sx={{ flex: 1 }}>
                                 {frontImage &&
-                                    <img src={frontImage} alt="" />
+                                    <img src={resolveImage(frontImage)} alt="" />
                                 }
 
                                 <Typography textAlign="center" whiteSpace="pre-wrap">

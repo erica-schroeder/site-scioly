@@ -1,39 +1,42 @@
-import { Button, Card, CardContent, Divider, Stack, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Divider, Stack, Typography } from '@mui/material';
 import { Link } from 'react-router';
 import '../styles/flashcard.css';
+import congratsGif from "@/assets/images/congrats.gif";
+import { FlashcardContent } from './FlashcardContent';
 
 function CongratsCard() {
 
     return (
-        <Card
-            className={"flashcard"}
-        >
-            <CardContent className="flashcard-front" sx={{ minHeight: "100%" }}>
-                <Stack spacing={2} sx={{ flex: 1 }}>
 
-                    <Typography level="title-lg">
-                        Finished!
-                    </Typography>
+        <div className="flashcard" >
+            <div className="flashcard-inner" >
+                <Card className="flashcard-front" variant="outlined">
+                    <FlashcardContent header="Finished!">
+                        <Stack spacing={3} justifyContent={"space-between"} sx={{ flex: 1, width: '100%', pt: 2 }}>
+                            <Box
+                                component="img"
+                                src={congratsGif}
+                                alt="Congratulations!"
+                                sx={{
+                                    objectFit: "contain", // preserves aspect ratio
+                                    borderRadius: "8px",
+                                }}
+                            />
 
-                    <Divider />
+                            <Typography textAlign="center">
+                                Amazing work!!!
+                            </Typography>
 
-                    <Stack spacing={3} justifyContent={"center"} sx={{ flex: 1 }}>
-                        <img src={require("../images/congrats.gif")} alt="" />
+                            <Divider />
 
-                        <Typography textAlign="center" fontSize={"lg"}>
-                            Amazing work!!!
-                        </Typography>
-                    </Stack>
-
-                    <Divider />
-
-                    <Button component={Link} to="/">
-                        Pick a new set
-                    </Button>
-
-                </Stack>
-            </CardContent>
-        </Card>
+                            <Button variant="contained" disableElevation component={Link} to="/">
+                                Pick a new set
+                            </Button>
+                        </Stack>
+                    </FlashcardContent>
+                </Card>
+            </div>
+        </div>
     );
 }
 
