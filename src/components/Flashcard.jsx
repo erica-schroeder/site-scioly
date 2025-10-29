@@ -1,11 +1,17 @@
 import { Card, Stack, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/flashcard.css';
 import { FlashcardContent } from './FlashcardContent';
 import { resolveImage } from '@/util/resolveImage';
 
 function Flashcard({ frontText, frontImage, backText }) {
     const [isFlipped, setIsFlipped] = useState(false);
+    const [imageSrc, setImageSrc] = useState(null);
+
+    useEffect(() => {
+        resolveImage(frontImage).then(setImageSrc);
+    }, frontImage);
+
 
     return (
         <div
@@ -16,8 +22,8 @@ function Flashcard({ frontText, frontImage, backText }) {
                 <Card className="flashcard-front">
                     <FlashcardContent header="Question">
                             <Stack spacing={3} justifyContent="center" sx={{ flex: 1 }}>
-                                {frontImage &&
-                                    <img src={resolveImage(frontImage)} alt="" />
+                                {imageSrc &&
+                                    <img src={imageSrc} alt="" />
                                 }
 
                                 <Typography textAlign="center" whiteSpace="pre-wrap">

@@ -15,8 +15,6 @@ const FlashcardScreen = () => {
         goPrevious,
     } = useFlashcardContext();
 
-    console.log("numcards", numCards)
-
     const isFinished = currentIndex >= numCards;
     if (!isFinished && (currentCard === null)) {
         return null;
