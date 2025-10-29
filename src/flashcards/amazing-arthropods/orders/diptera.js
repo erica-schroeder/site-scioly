@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which order contains these insects?\n\nFlies\nCrane flies\nMosquitos\nMidges",
         answer: "Diptera",
@@ -56,5 +56,3 @@ const array = [
     },
 
 ];
-
-export default array;

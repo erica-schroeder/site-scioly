@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "All members of malacostraca have at least ___ pairs of walking legs",
         answer: "5",
@@ -63,5 +63,3 @@ const array = [
         answer: "Mostly aquatic, except for pillbugs that live on land",
     },
 ];
-
-module.exports = array;

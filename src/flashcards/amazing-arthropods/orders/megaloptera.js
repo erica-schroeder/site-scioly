@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which insect order contains dobsonflies, alderflies, and fishflies",
         answer: "Megaloptera",
@@ -42,5 +42,3 @@ const array = [
         image: "dobsonfly2.jpg"
     },
 ];
-
-export default array;

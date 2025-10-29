@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "How many pairs of wings do arachnids have?",
         answer: "0",
@@ -74,5 +74,3 @@ const array = [
         answer: "An organism that lives off of another and causes it harm.",
     },
 ];
-
-module.exports = array;

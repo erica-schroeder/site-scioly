@@ -13,7 +13,7 @@ function Flashcard({ frontText, frontImage, backText }) {
             onClick={() => setIsFlipped(!isFlipped)}
         >
             <div className="flashcard-inner" >
-                <Card className="flashcard-front" variant="outlined">
+                <Card className="flashcard-front">
                     <FlashcardContent header="Question">
                             <Stack spacing={3} justifyContent="center" sx={{ flex: 1 }}>
                                 {frontImage &&
@@ -28,7 +28,7 @@ function Flashcard({ frontText, frontImage, backText }) {
                     </FlashcardContent>
                 </Card>
 
-                <Card className="flashcard-back" variant="outlined">
+                <Card className="flashcard-back">
                     <FlashcardContent header="Answer" headerAlign="right">
                         <Stack justifyContent="center" alignItems="center" sx={{ flex: 1 }}>
                             <Typography textAlign="center" whiteSpace="pre-wrap">

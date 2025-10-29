@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "What creatures are in class chilopoda?",
         answer: "Centipedes",
@@ -62,5 +62,3 @@ const array = [
         image: "forcipules.jpg"
     },
 ];
-
-module.exports = array;

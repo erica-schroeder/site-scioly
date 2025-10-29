@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which insect order contains butterflies and moths?",
         answer: "Lepidoptera",
@@ -32,5 +32,3 @@ const array = [
         image: "butterfly-scales.jpg"
     },
 ];
-
-export default array;

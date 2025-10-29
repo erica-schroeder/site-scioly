@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Where do caddisfly larvae live?",
         answer: "Lakes and rivers"
@@ -16,5 +16,3 @@ const array = [
         answer: "They build cases to protect themselves"
     },
 ];
-
-export default array;

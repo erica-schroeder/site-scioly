@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "American cockroach\n\nNative to Michigan?\nConservation status?",
         answer: "Non-native\n\nInvasive",
@@ -96,5 +96,3 @@ const array = [
         answer: "Native\n\nLeast concern",
     },
 ];
-
-module.exports = array;

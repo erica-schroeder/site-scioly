@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which insect order contains beetles?",
         answer: "Coleoptera",
@@ -37,5 +37,3 @@ const array = [
         image: "beetle-pronotum.png"
     },
 ];
-
-export default array;

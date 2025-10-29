@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "What creatures are in class diplopoda?",
         answer: "Millipedes",
@@ -45,5 +45,3 @@ const array = [
         answer: "They improve it by eating decaying plants and pooping out nutrient-rich matter.",
     },
 ];
-
-module.exports = array;

@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which defense mechanism is shown here?",
         answer: "Warning colors (aposematism)",
@@ -63,5 +63,3 @@ const array = [
         answer: "Playing dead"
     },
 ];
-
-module.exports = array;

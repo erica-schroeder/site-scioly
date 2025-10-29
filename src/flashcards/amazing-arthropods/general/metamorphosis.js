@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "What kind of metamorphosis is this?",
         answer: "Without metamorphosis",
@@ -81,5 +81,3 @@ const array = [
         image: "instars.jpg"
     },
 ];
-
-module.exports = array;

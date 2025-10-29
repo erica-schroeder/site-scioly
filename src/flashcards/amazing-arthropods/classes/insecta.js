@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "How many pairs of wings do insects have?",
         answer: "2 pairs (4 wings)",
@@ -45,5 +45,3 @@ const array = [
         image: "abdomen.jpg"
     },
 ];
-
-module.exports = array;

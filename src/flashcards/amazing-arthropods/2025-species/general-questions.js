@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which species is an invasive destructive pest in the Great Lakes?",
         answer: "Spiny water flea\n(It eats all the zooplankton, leaving other creatures with less to eat)",
@@ -16,5 +16,3 @@ const array = [
         answer: "A pouch on the back of female water fleas that holds the eggs and newly hatched offspring",
     },
 ];
-
-module.exports = array;

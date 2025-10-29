@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which insect order contains dragonflies and damselflies?",
         answer: "Odonata",
@@ -27,5 +27,3 @@ const array = [
         image: "dragonfly-mouthparts.jpg"
     },
 ];
-
-export default array;

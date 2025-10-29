@@ -2,6 +2,8 @@ import { useFlashcardContext } from '@/contexts/FlashcardContext';
 import { Button, Checkbox, Divider, Grid, List, ListItem, ListItemButton, ListItemText, Stack, Typography } from '@mui/material';
 import { useState } from "react";
 import { Link } from "react-router";
+import FlashcardBrowser from './Group';
+
 
 const groups = [
     {
@@ -106,9 +108,10 @@ const SelectFlashcardSetScreen = () => {
         setSelectedSets(newSets);
     };
 
-
     return (
         <Stack display="flex" alignItems="center" spacing={5} mt={10} mb={10}>
+
+<FlashcardBrowser />
             <Typography variant="h4" fontSize={36}>
                 Select Flashcard Sets
             </Typography>

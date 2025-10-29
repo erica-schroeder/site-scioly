@@ -10,7 +10,7 @@ function CongratsCard() {
 
         <div className="flashcard" >
             <div className="flashcard-inner" >
-                <Card className="flashcard-front" variant="outlined">
+                <Card className="flashcard-front">
                     <FlashcardContent header="Finished!">
                         <Stack spacing={3} justifyContent={"space-between"} sx={{ flex: 1, width: '100%', pt: 2 }}>
                             <Box

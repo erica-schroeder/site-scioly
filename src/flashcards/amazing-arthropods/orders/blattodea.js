@@ -1,4 +1,8 @@
-const array = [
+export const meta = {
+    displayName: "Blattodea",
+};
+
+export default [
     {
         question: "Which insect order contains cockroaches and termites?",
         answer: "Blattodea",
@@ -41,5 +45,3 @@ const array = [
         image: "cockroach-ootheca.jpg",
     },
 ];
-
-export default array;

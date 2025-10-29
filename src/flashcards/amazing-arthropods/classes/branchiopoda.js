@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "What does branchiopoda mean?",
         answer: "Gill foot",
@@ -43,5 +43,3 @@ const array = [
         answer: "Plankton (tiny plants)\nDetritus (decaying matter)",
     },
 ];
-
-module.exports = array;

@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which species' larvae are called aphid lions?",
         answer: "Red-lipped green lacewing",
@@ -82,5 +82,3 @@ const array = [
         answer: "Yes",
     },
 ];
-
-module.exports = array;

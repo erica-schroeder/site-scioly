@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which insect order contains crickets, grasshoppers, and katydids?",
         answer: "Orthoptera",
@@ -32,5 +32,3 @@ const array = [
         image: "katydid-mouthparts.jpg"
     },
 ];
-
-export default array;

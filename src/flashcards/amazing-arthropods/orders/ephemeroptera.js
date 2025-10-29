@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which insect order contains mayflies?",
         answer: "Ephemeroptera",
@@ -21,5 +21,3 @@ const array = [
         answer: "None!",
     },
 ];
-
-export default array;

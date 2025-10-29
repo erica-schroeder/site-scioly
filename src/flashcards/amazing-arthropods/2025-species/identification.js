@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "What is this species?",
         answer: "Hungerford's crawling water beetle",
@@ -135,5 +135,3 @@ const array = [
         image: "large-water-flea.jpg"
     },
 ];
-
-module.exports = array;

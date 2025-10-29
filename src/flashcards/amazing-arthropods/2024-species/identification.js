@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "What is this species?",
         answer: "Diamond northern caddisfly (case made from twigs, very crazy looking)",
@@ -160,5 +160,3 @@ const array = [
         image: "black-yellow-garden-spider-web.jpg"
     },
 ];
-
-module.exports = array;

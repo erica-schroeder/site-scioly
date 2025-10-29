@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which insect order contains mantises?",
         answer: "Mantodea",
@@ -32,5 +32,3 @@ const array = [
         image: "raptorial-claws.jpg"
     },
 ];
-
-export default array;

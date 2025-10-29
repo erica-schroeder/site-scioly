@@ -1,4 +1,4 @@
-const array = [
+export default [
     {
         question: "Which insect order contains true bugs?",
         answer: "Hemiptera",
@@ -51,5 +51,3 @@ const array = [
         answer: "Hemelytra (hemi = half)",
     },
 ];
-
-export default array;

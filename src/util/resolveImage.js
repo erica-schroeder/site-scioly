@@ -1,6 +1,5 @@
 export function resolveImage(name) {
   const images = import.meta.glob("../assets/images/*", {
-    eager: true,
     import: "default",
   });
   const map = Object.fromEntries(
