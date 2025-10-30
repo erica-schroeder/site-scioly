@@ -1,10 +1,15 @@
 import {
-  Box,
+  Card,
+  CardContent,
   Checkbox,
-  FormControlLabel,
-  FormGroup,
-  Typography,
   Divider,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+  Stack,
+  Typography
 } from '@mui/material';
 
 export default function GroupSelector({ name, group, selectedSets, onChange }) {
@@ -31,37 +36,51 @@ export default function GroupSelector({ name, group, selectedSets, onChange }) {
   };
 
   return (
-    <Box sx={{ mb: 3, p: 2, borderRadius: 2, bgcolor: 'background.paper', boxShadow: 1 }}>
-      <Typography variant="h6" gutterBottom>
-        {group.meta?.displayName || name}
-      </Typography>
-
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={allSelected}
-              indeterminate={someSelected}
-              onChange={handleSelectAll}
-            />
+    <Card variant="outlined">
+      <CardContent>
+        <List
+          dense
+          sx={{ height: {xs: 'auto', sm: 350}, minHeight: 200, overflowY: "auto" }}
+          subheader={
+            <ListSubheader sx={{
+              backgroundColor: "card.background",
+              color: 'inherit',
+            }}>
+              <Stack>
+                <Typography variant="h6" fontWeight="bold">{name}</Typography>
+                <Stack direction="row" alignItems="center">
+                  <ListItemIcon>
+                    <Checkbox
+                      edge="start"
+                      checked={allSelected}
+                      indeterminate={someSelected}
+                      onChange={handleSelectAll}
+                    />
+                  </ListItemIcon>
+                  <ListItemText primary="Select All" />
+                </Stack>
+                <Divider sx={{ my: 1 }} />
+              </Stack>
+            </ListSubheader>
           }
-          label="Select all"
-        />
-        <Divider sx={{ my: 1 }} />
-
-        {sets.map((s) => (
-          <FormControlLabel
-            key={s.key}
-            control={
-              <Checkbox
-                checked={selectedSets.includes(s.key)}
-                onChange={handleSetChange(s.key)}
-              />
-            }
-            label={s.displayName || s.key}
-          />
-        ))}
-      </FormGroup>
-    </Box>
+        >
+          {group.sets.map((s) => (
+            <ListItem key={s.key}
+              sx={{
+                py: 0,
+              }}>
+              <ListItemIcon>
+                <Checkbox
+                  edge="start"
+                  checked={selectedSets.includes(s.key)}
+                  onChange={handleSetChange(s.key)}
+                />
+              </ListItemIcon>
+              <ListItemText primary={s.displayName || s.key} />
+            </ListItem>
+          ))}
+        </List>
+      </CardContent>
+    </Card>
   );
 }

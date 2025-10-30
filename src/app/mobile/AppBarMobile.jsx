@@ -4,8 +4,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 export const AppBarMobile = ({ onDrawerToggle }) => {
     return (
-        <AppBar position="static" >
-            <Toolbar sx={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <AppBar>
+            <Toolbar sx={{ justifyContent: 'space-between' }}>
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"

@@ -1,7 +1,3 @@
-export const meta = {
-    displayName: "Blattodea",
-};
-
 export default [
     {
         question: "Which insect order contains cockroaches and termites?",

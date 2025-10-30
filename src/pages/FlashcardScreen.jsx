@@ -35,7 +35,7 @@ const FlashcardScreen = () => {
             <Stack maxWidth="sm" sx={{ width: "100%" }} direction="row" alignItems="center" justifyContent="space-evenly" >
                 <HideableComponent visible={currentIndex === 0 ? false : true} >
                     <IconButton onClick={goPrevious}>
-                        <ArrowBackRoundedIcon sx={{ color: 'black', fontSize: 45 }} />
+                        <ArrowBackRoundedIcon sx={{ fontSize: 45 }} />
                     </IconButton>
                 </HideableComponent>
 
@@ -50,7 +50,7 @@ const FlashcardScreen = () => {
                 <HideableComponent visible={currentIndex >= numCards ? false : true}>
                     <IconButton
                         onClick={goNext}>
-                        <ArrowForwardRoundedIcon sx={{ color: 'black', fontSize: 45 }} />
+                        <ArrowForwardRoundedIcon sx={{ fontSize: 45 }} />
                     </IconButton>
                 </HideableComponent>
             </Stack>

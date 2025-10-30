@@ -16,8 +16,21 @@ export const manifest = {
                     }
                 },
             },
+            "general": {
+                displayName: "General",
+                sets: {
+                    "defense-mechanisms": {
+                        displayName: "Defense Mechanisms",
+                        load: () => import("./amazing-arthropods/general/defense-mechanisms"),
+                    },
+                    "metamorphosis": {
+                        displayName: "Metamorphosis",
+                        load: () => import("./amazing-arthropods/general/metamorphosis"),
+                    },
+                }
+            },
             "classes": {
-                displayName: "Classes",
+                displayName: "Arthropod Classes",
                 sets: {
                     "arachnida": {
                         displayName: "Arachnida",
@@ -42,19 +55,6 @@ export const manifest = {
                     "malacostraca": {
                         displayName: "Malacostracta",
                         load: () => import("./amazing-arthropods/classes/malacostraca"),
-                    },
-                }
-            },
-            "general": {
-                displayName: "General",
-                sets: {
-                    "defense-mechanisms": {
-                        displayName: "Defense Mechanisms",
-                        load: () => import("./amazing-arthropods/general/defense-mechanisms"),
-                    },
-                    "metamorphosis": {
-                        displayName: "Metamorphosis",
-                        load: () => import("./amazing-arthropods/general/metamorphosis"),
                     },
                 }
             },
@@ -116,6 +116,21 @@ export const manifest = {
                 }
             }
         }
+    },
+    "entomology": {
+        displayName: "Entomology",
+        level: "Middle",
+        groups: {
+            "anatomy": {
+                displayName: "Anatomy",
+                sets: {
+                    "leg-types": {
+                        displayName: "Leg Types",
+                        load: () => import("./entomology/anatomy/leg-types"),
+                    },
+                }
+            },
+        },
     },
 };
 

@@ -1,9 +1,9 @@
 import { useEventContext } from '@/contexts/EventContext';
-import { Box, Button, Stack, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import GroupSelector from './GroupSelector';
-import { Link, useParams } from 'react-router';
 import { useFlashcardContext } from '@/contexts/FlashcardContext';
+import { Box, Button, Divider, Grid, Stack, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router';
+import GroupSelector from './GroupSelector';
 
 export function SelectFlashcardsPage() {
     const { eventKey } = useParams();
@@ -17,40 +17,57 @@ export function SelectFlashcardsPage() {
 
     return (
         <Stack>
-            <Typography variant="h4" gutterBottom>
-                {selectedEvent?.displayName}
-            </Typography>
+            <Stack
+                alignItems="center"
+                sx={{
+                    flex: 1,
+                    overflowY: 'auto',
+                    maxWidth: 'xl',
+                    mx: 'auto',
+                }}>
+                <Typography variant="h4">
+                    {selectedEvent?.displayName} Flashcards
+                </Typography>
 
-            {selectedEvent.groups.map((group) => (
-                <GroupSelector
-                    key={group.key}
-                    name={group.displayName}
-                    group={group}
-                    selectedSets={selectedSets}
-                    onChange={setSelectedSets}
-                />
-            ))}
+                <Divider sx={{borderColor: 'primary.main', width: '100%', my: 2, mb: 4 }}/>
 
-            {/* Optional summary / next button */}
-            {selectedSets.length > 0 && (
-                <Box sx={{ mt: 4 }}>
-                    <Typography variant="subtitle1">
-                        Selected sets: {selectedSets.join(', ')}
-                    </Typography>
-                </Box>
-            )}
+                <Grid container spacing={{ xs: 2, md: 4 }} justifyContent="center">
+                    {selectedEvent.groups.map((group) => (
+                        <Grid size={{ xs: 12, sm: 6, md: 4 }} sx={{ minWidth: 225, maxWidth: 300 }}>
+                            <GroupSelector
+                                key={group.key}
+                                name={group.displayName}
+                                group={group}
+                                selectedSets={selectedSets}
+                                onChange={setSelectedSets}
+                            />
+                        </Grid>
+                    ))}
+                </Grid>
+            </Stack>
 
-
-            <Button
-                variant='contained'
-                disableElevation
-                disabled={selectedSets.length < 1}
-                component={Link}
-                onClick={() => loadAndShuffleSets(selectedSets)}
-                to={`/flashcards`}
+            <Box
+                sx={{
+                    position: 'sticky',
+                    bottom: 0,
+                    zIndex: 10,
+                    mt: 2,
+                    p: 2,
+                    display: 'flex',
+                    justifyContent: 'center', // centers horizontally
+                }}
             >
-                Start!
-            </Button>
+                <Button
+                    variant='start'
+                    disableElevation
+                    disabled={selectedSets.length < 1}
+                    component={Link}
+                    onClick={() => loadAndShuffleSets(selectedSets)}
+                    to={`/flashcards`}
+                >
+                    Start!
+                </Button>
+            </Box>
         </Stack>
     );
 }
