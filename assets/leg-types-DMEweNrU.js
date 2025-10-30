@@ -1,0 +1,1 @@
+const e=[{question:"What type of insect leg is this?",answer:"Saltatorial (jumping)",image:"jumping-leg.png"},{question:"What type of insect leg is this?",answer:"Cursorial (walking/running)",image:"walking-leg.png"}];export{e as default};
