@@ -10,7 +10,7 @@ function Flashcard({ frontText, frontImage, backText }) {
 
     useEffect(() => {
         resolveImage(frontImage).then(setImageSrc);
-    }, frontImage);
+    }, [frontImage]);
 
 
     return (
@@ -21,7 +21,7 @@ function Flashcard({ frontText, frontImage, backText }) {
             <div className="flashcard-inner" >
                 <Card className="flashcard-front">
                     <FlashcardContent header="Question">
-                            <Stack spacing={3} justifyContent="center" sx={{ flex: 1 }}>
+                            <Stack spacing={3} justifyContent="center" sx={{ mt: -2, flex: 1 }}>
                                 {imageSrc &&
                                     <img src={imageSrc} alt="" />
                                 }
@@ -36,7 +36,7 @@ function Flashcard({ frontText, frontImage, backText }) {
 
                 <Card className="flashcard-back">
                     <FlashcardContent header="Answer" headerAlign="right">
-                        <Stack justifyContent="center" alignItems="center" sx={{ flex: 1 }}>
+                        <Stack justifyContent="center" alignItems="center" sx={{ mt: -2, flex: 1 }}>
                             <Typography textAlign="center" whiteSpace="pre-wrap">
                                 {backText}
                             </Typography>

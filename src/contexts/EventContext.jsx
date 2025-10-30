@@ -1,52 +1,47 @@
-import { buildAllEvents } from "@/flashcards";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { manifest } from "@/flashcards/manifest";
+import { createContext, useContext, useMemo, useState } from "react";
 
 const EventContext = createContext(null);
 
-function mapEventsByLevel(eventTree) {
-  const levelMap = {};
-
-  if(!eventTree) {
-    return levelMap;
-  }
-
-  for (const [eventKey, eventNode] of Object.entries(eventTree)) {
-    const level = eventNode.meta?.level || "unknown";
-
-    if (!levelMap[level]) levelMap[level] = [];
-    levelMap[level].push({
-      key: eventKey,
-      displayName: eventNode.meta?.displayName || eventKey,
-      meta: eventNode.meta,
-    });
-  }
-
-  return levelMap;
-}
-
 export const EventProvider = ({ children }) => {
-    const [eventTree, setEventTree] = useState(null);
-    const [loading, setLoading] = useState(true);
+    // Convert manifest into useful structures
+    const { events, eventsByLevel } = useMemo(() => {
+        const events = Object.entries(manifest).map(([eventId, eventData]) => ({
+            key: eventId,
+            displayName: eventData.displayName,
+            level: eventData.level,
+            groups: Object.entries(eventData.groups).map(([groupId, groupData]) => ({
+                key: groupId,
+                displayName: groupData.displayName,
+                sets: Object.entries(groupData.sets).map(([setId, setData]) => ({
+                    key: setId,
+                    displayName: setData.displayName
+                }))
+            }))
+        }));
 
-    useEffect(() => {
-        (async () => {
-            buildAllEvents()
-                .then(setEventTree)
-                .finally(() => setLoading(false));
-        })();
+        // Build level → events map
+        const eventsByLevel = events.reduce((acc, event) => {
+            if (!acc[event.level]) acc[event.level] = [];
+            acc[event.level].push(event);
+            return acc;
+        }, {});
+
+        return { events, eventsByLevel };
     }, []);
 
-    const eventsByLevel = mapEventsByLevel(eventTree);
-    console.log(eventsByLevel);
 
-    const value = useMemo(() => ({
-        eventsByLevel,
-        events: eventTree,
-    }), [eventsByLevel, eventsByLevel])
+    // the currently selected event (default to first for convenience)
+    const [selectedEventKey, setSelectedEventKey] = useState(events[0]?.key ?? null);
+    const selectedEvent = selectedEventKey ? events.find(e => e.key === selectedEventKey) : null;
 
     return (
         <EventContext.Provider
-            value={value}
+            value={{
+                setSelectedEventKey,
+                selectedEvent,
+                eventsByLevel,
+            }}
         >
             {children}
         </EventContext.Provider>

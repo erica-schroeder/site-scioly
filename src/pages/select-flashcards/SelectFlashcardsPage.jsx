@@ -1,29 +1,30 @@
 import { useEventContext } from '@/contexts/EventContext';
 import { Box, Button, Stack, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GroupSelector from './GroupSelector';
 import { Link, useParams } from 'react-router';
 import { useFlashcardContext } from '@/contexts/FlashcardContext';
 
 export function SelectFlashcardsPage() {
-    const [selectedSets, setSelectedSets] = useState([]);
-    const { events } = useEventContext();
-    const { loadAndShuffleSets } = useFlashcardContext();
     const { eventKey } = useParams();
+    const { setSelectedEventKey, selectedEvent } = useEventContext();
+    const [selectedSets, setSelectedSets] = useState([]);
+    const { loadAndShuffleSets } = useFlashcardContext();
 
-    const event = events[eventKey];
-    const groups = event.groups || {};
+    useEffect(() => {
+        setSelectedEventKey(eventKey);
+    }, [eventKey, setSelectedEventKey]);
 
     return (
         <Stack>
             <Typography variant="h4" gutterBottom>
-                {event.meta?.displayName}
+                {selectedEvent?.displayName}
             </Typography>
 
-            {Object.entries(groups).map(([groupName, group]) => (
+            {selectedEvent.groups.map((group) => (
                 <GroupSelector
-                    key={groupName}
-                    name={groupName}
+                    key={group.key}
+                    name={group.displayName}
                     group={group}
                     selectedSets={selectedSets}
                     onChange={setSelectedSets}
@@ -38,6 +39,7 @@ export function SelectFlashcardsPage() {
                     </Typography>
                 </Box>
             )}
+
 
             <Button
                 variant='contained'

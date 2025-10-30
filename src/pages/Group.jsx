@@ -1,4 +1,3 @@
-import { buildAllEvents } from '@/flashcards';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -11,7 +10,6 @@ function Group({ node }) {
           key={set.id}
           onClick={async () => {
             const loaded = await set.load();
-            console.log('Loaded cards for', loaded.meta?.displayName, loaded.cards);
           }}
         >
           {set.meta?.displayName || set.id}
@@ -28,16 +26,10 @@ export default function FlashcardBrowser() {
   const [eventTrees, setEventTrees] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    buildAllEvents()
-      .then(setEventTrees)
-      .finally(() => setLoading(false));
-  }, []);
 
   if (loading) return <p>Loading...</p>;
   if (!eventTrees) return <p>No events found</p>;
 
-  console.log(JSON.stringify(eventTrees));
 
   return (
     <div>

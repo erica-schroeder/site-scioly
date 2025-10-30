@@ -7,8 +7,8 @@ import { Route, Routes } from 'react-router';
 import { AppFrameMobile } from './mobile/AppFrameMobile';
 
 function App() {
-  const { events } = useEventContext();
-  if(!events) {
+  const { eventsByLevel } = useEventContext();
+  if(!eventsByLevel) {
     return "Loading...";
   }
 

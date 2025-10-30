@@ -11,14 +11,14 @@ export default function GroupSelector({ name, group, selectedSets, onChange }) {
   const sets = group.sets || [];
 
   // Determine if all sets are selected
-  const allSelected = sets.length > 0 && sets.every(s => selectedSets.includes(s.id));
-  const someSelected = sets.some(s => selectedSets.includes(s.id)) && !allSelected;
+  const allSelected = sets.length > 0 && sets.every(s => selectedSets.includes(s.key));
+  const someSelected = sets.some(s => selectedSets.includes(s.key)) && !allSelected;
 
   const handleSelectAll = (e) => {
     const checked = e.target.checked;
     const newSelection = checked
-      ? [...new Set([...selectedSets, ...sets.map(s => s.id)])]
-      : selectedSets.filter(id => !sets.map(s => s.id).includes(id));
+      ? [...new Set([...selectedSets, ...sets.map(s => s.key)])]
+      : selectedSets.filter(key => !sets.map(s => s.key).includes(key));
     onChange(newSelection);
   };
 
@@ -51,14 +51,14 @@ export default function GroupSelector({ name, group, selectedSets, onChange }) {
 
         {sets.map((s) => (
           <FormControlLabel
-            key={s.id}
+            key={s.key}
             control={
               <Checkbox
-                checked={selectedSets.includes(s.id)}
-                onChange={handleSetChange(s.id)}
+                checked={selectedSets.includes(s.key)}
+                onChange={handleSetChange(s.key)}
               />
             }
-            label={s.meta?.displayName || s.id}
+            label={s.displayName || s.key}
           />
         ))}
       </FormGroup>

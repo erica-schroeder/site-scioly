@@ -1,8 +1,8 @@
-import { useEventContext } from "@/contexts/EventContext"
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { List, ListItem, ListItemText, Collapse, ListItemButton } from "@mui/material";
-import React from "react";
-import { useState } from "react";
+import { useEventContext } from "@/contexts/EventContext";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import { Collapse, List, ListItemButton, ListItemText } from "@mui/material";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
 export const NavigationList = ({ onNavigate }) => {

@@ -1,14 +1,12 @@
+import { setIndex } from "@/flashcards/manifest";
 import { shuffle } from "lodash-es";
 import { createContext, useContext, useEffect, useState } from "react";
-import { useEventContext } from "./EventContext";
 
 const FlashcardContext = createContext(null);
 
 const STORAGE_KEY = "flashcardState";
 
 export const FlashcardProvider = ({ children }) => {
-    const { events } = useEventContext();
-
     const [flashcards, setFlashcards] = useState(() => {
         try {
             const stored = JSON.parse(sessionStorage.getItem(STORAGE_KEY));
@@ -40,38 +38,12 @@ export const FlashcardProvider = ({ children }) => {
     }, [flashcards, currentIndex]);
 
 
-    // Helper to find a set in the tree by ID
-    function findSetInTree(setId) {
-        let found = null;
-
-        function traverse(node) {
-            if (found) return;
-            const match = node.sets.find((s) => s.id === setId);
-            if (match) {
-                found = match;
-                return;
-            }
-            Object.values(node.groups || {}).forEach(traverse);
-        }
-
-        Object.values(events || {}).forEach(traverse);
-        return found;
-    }
 
     const loadAndShuffleSets = async (setIds) => {
-        const setsToLoad = setIds
-            .map((id) => findSetInTree(id))
-            .filter(Boolean); // remove any missing sets
-
         const modules = await Promise.all(
-            setsToLoad.map((s) => s.load())
+            setIds.map(id => setIndex[id].load())
         );
-
-        // Flatten all sets
-        const allCards = shuffle(modules.flatMap((m) => m.cards));
-
-        console.log("allCards");
-
+        const allCards = shuffle(modules.flatMap(m => m.default));
         setFlashcards(allCards);
         setCurrentIndex(0);
     };

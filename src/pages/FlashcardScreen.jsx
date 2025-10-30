@@ -21,7 +21,7 @@ const FlashcardScreen = () => {
     }
 
     return (
-        <Stack spacing={2} paddingTop={10} alignItems="center">
+        <Stack spacing={2} paddingTop={5} alignItems="center">
             {isFinished
                 ? <CongratsCard />
                 : <Flashcard key={currentIndex}
