@@ -36,18 +36,25 @@ export default function GroupSelector({ name, group, selectedSets, onChange }) {
   };
 
   return (
-    <Card variant="outlined">
+    <Card variant="outlined"
+    sx={{
+    }}
+    >
       <CardContent>
         <List
           dense
-          sx={{ height: {xs: 'auto', sm: 350}, minHeight: 200, overflowY: "auto" }}
+          sx={{
+            height: 300,
+            minHeight: 200,
+            overflowY: "auto",
+          }}
           subheader={
             <ListSubheader sx={{
               backgroundColor: "card.background",
               color: 'inherit',
             }}>
               <Stack>
-                <Typography variant="h6" fontWeight="bold">{name}</Typography>
+                <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ ml: -2 }}>{name}</Typography>
                 <Stack direction="row" alignItems="center">
                   <ListItemIcon>
                     <Checkbox

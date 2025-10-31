@@ -20,20 +20,20 @@ export function SelectFlashcardsPage() {
             <Stack
                 alignItems="center"
                 sx={{
-                    flex: 1,
-                    overflowY: 'auto',
-                    maxWidth: 'xl',
+                    width: '100%',
+                    maxWidth: 'md',
                     mx: 'auto',
                 }}>
-                <Typography variant="h4">
+                <Typography variant="h4" sx={{ alignSelf: 'flex-start' }}>
+
                     {selectedEvent?.displayName} Flashcards
                 </Typography>
 
                 <Divider sx={{borderColor: 'primary.main', width: '100%', my: 2, mb: 4 }}/>
 
-                <Grid container spacing={{ xs: 2, md: 4 }} justifyContent="center">
+                <Grid container spacing={3} justifyContent="center">
                     {selectedEvent.groups.map((group) => (
-                        <Grid size={{ xs: 12, sm: 6, md: 4 }} sx={{ minWidth: 225, maxWidth: 300 }}>
+                        <Grid size={{ xs: 6, sm: 3 }} sx={{ minWidth: 240, maxWidth: 300 }}>
                             <GroupSelector
                                 key={group.key}
                                 name={group.displayName}

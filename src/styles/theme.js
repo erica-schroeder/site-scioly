@@ -5,7 +5,7 @@ let theme = extendTheme({
         light: {
             palette: {
                 background: {
-                    default: "#ededee",
+                    default: "#f2f3fa",
                     paper: "#ededee",
                 },
                 primary: {
@@ -19,11 +19,11 @@ let theme = extendTheme({
                     accent: "#FF211C",
                 },
                 appBar: {
-                    background: "#dfdfe0",
-                    border: "#bcbcbd",
+                    background: "#414142",
+                    color: "#ededee"
                 },
                 card: {
-                    background: "#fafafb",
+                    background: "#f8f9ff",
                 },
             },
         },
@@ -65,6 +65,7 @@ let theme = extendTheme({
             styleOverrides: {
                 root: {
                     minWidth: 32,
+                    maxHeight: 32,
                 },
             },
         },

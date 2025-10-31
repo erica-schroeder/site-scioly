@@ -1,5 +1,5 @@
 import { AppBar, Toolbar, IconButton, Box } from "@mui/material";
-import logo from "@/assets/romeo-scioly-logo.svg";
+import logo from "@/assets/romeo-scioly-logo-dark.svg";
 import MenuIcon from '@mui/icons-material/Menu';
 
 export const AppBarMobile = ({ onDrawerToggle }) => {
@@ -12,7 +12,7 @@ export const AppBarMobile = ({ onDrawerToggle }) => {
                     edge="start"
                     onClick={onDrawerToggle}
                 >
-                    <MenuIcon fontSize="large"/>
+                    <MenuIcon fontSize="large" sx={{ color: 'white' }} />
                 </IconButton>
                 <Box
                     component="img"

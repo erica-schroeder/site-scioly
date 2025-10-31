@@ -3,32 +3,6 @@ export const manifest = {
         displayName: "Amazing Arthropods",
         level: "Elementary",
         groups: {
-            "2025-species": {
-                displayName: "2025 Species",
-                sets: {
-                    "general-questions": {
-                        displayName: "General Questions",
-                        load: () => import("./amazing-arthropods/2025-species/general-questions"),
-                    },
-                    "identification": {
-                        displayName: "Identification",
-                        load: () => import("./amazing-arthropods/2025-species/identification"),
-                    }
-                },
-            },
-            "general": {
-                displayName: "General",
-                sets: {
-                    "defense-mechanisms": {
-                        displayName: "Defense Mechanisms",
-                        load: () => import("./amazing-arthropods/general/defense-mechanisms"),
-                    },
-                    "metamorphosis": {
-                        displayName: "Metamorphosis",
-                        load: () => import("./amazing-arthropods/general/metamorphosis"),
-                    },
-                }
-            },
             "classes": {
                 displayName: "Arthropod Classes",
                 sets: {
@@ -114,7 +88,33 @@ export const manifest = {
                         load: () => import("./amazing-arthropods/orders/trichoptera"),
                     },
                 }
-            }
+            },
+            "general": {
+                displayName: "General",
+                sets: {
+                    "defense-mechanisms": {
+                        displayName: "Defense Mechanisms",
+                        load: () => import("./amazing-arthropods/general/defense-mechanisms"),
+                    },
+                    "metamorphosis": {
+                        displayName: "Metamorphosis",
+                        load: () => import("./amazing-arthropods/general/metamorphosis"),
+                    },
+                }
+            },
+            "2025-species": {
+                displayName: "2025 Species",
+                sets: {
+                    "general-questions": {
+                        displayName: "General Questions",
+                        load: () => import("./amazing-arthropods/2025-species/general-questions"),
+                    },
+                    "identification": {
+                        displayName: "Identification",
+                        load: () => import("./amazing-arthropods/2025-species/identification"),
+                    }
+                },
+            },
         }
     },
     "entomology": {
