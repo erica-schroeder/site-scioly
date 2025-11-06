@@ -25,11 +25,14 @@ export function SelectFlashcardsPage() {
                     mx: 'auto',
                 }}>
                 <Typography variant="h4" sx={{ alignSelf: 'flex-start' }}>
-
                     {selectedEvent?.displayName} Flashcards
                 </Typography>
 
                 <Divider sx={{borderColor: 'primary.main', width: '100%', my: 2, mb: 4 }}/>
+
+                <Typography sx={{ mb: 3 }}>
+                    Select the sets you want to include, then press start!
+                </Typography>
 
                 <Grid container spacing={3} justifyContent="center">
                     {selectedEvent.groups.map((group) => (

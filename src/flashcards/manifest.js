@@ -118,7 +118,7 @@ export const manifest = {
         }
     },
     "entomology": {
-        displayName: "Entomology",
+        displayName: "Entomology B",
         level: "Middle",
         groups: {
             "anatomy": {
@@ -130,6 +130,12 @@ export const manifest = {
                     },
                 }
             },
+        },
+    },
+    "potions-poisons": {
+        displayName: "Potions and Poisons B",
+        level: "Middle",
+        groups: {
         },
     },
 };

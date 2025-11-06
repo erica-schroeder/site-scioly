@@ -1,63 +1,66 @@
-import { alpha, extendTheme, responsiveFontSizes } from '@mui/material/styles';
+import { baseTheme } from '@erica/mui-web';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
-let theme = extendTheme({
-    colorSchemes: {
-        light: {
-            palette: {
-                background: {
-                    default: "#f2f3fa",
-                    paper: "#ededee",
-                },
-                primary: {
-                    main: "#414142",
-                },
-                secondary: {
-                    main: "#FF211C",
-                },
-                icon: {
-                    main: "#414142",
-                    accent: "#FF211C",
-                },
-                appBar: {
-                    background: "#414142",
-                    color: "#ededee"
-                },
-                card: {
-                    background: "#f8f9ff",
-                },
-            },
+const palette = {
+    primary: {
+        main: "#414142",
+    },
+    secondary: {
+        main: "#FF211C",
+    },
+    background: {
+        default: "#f2f3fa",
+        paper: "#f8f9ff",
+    },
+    icon: {
+        main: "#414142",
+        accent: "#FF211C",
+    },
+    appBar: {
+        main: "#414142",
+        contrastText: "#ededee"
+    },
+    card: {
+        background: "#f8f9ff",
+    },
+};
+
+
+let theme = createTheme(baseTheme, {
+    palette: palette,
+    typography: {
+        navItemPrimary: {
+            color: 'black',
+            fontSize: '1.5rem',
+            fontWeight: 400,
+            fontFamily: 'sans-serif',
+        },
+        navItemSecondary: {
+            color: 'black',
+            fontSize: '1.25rem',
+            fontWeight: 400,
+            fontFamily: 'sans-serif',
         },
     },
 
     components: {
         MuiAppBar: {
             defaultProps: {
-                position: "static",
-                elevation: 0,
+                elevation: 0
             },
             styleOverrides: {
-                root: ({ theme }) => ({
-                    backgroundColor: theme.palette.appBar.background,
-                    borderBottom: "1px solid",
-                    borderTop: "1px solid",
-                    borderColor: theme.palette.appBar.border,
-                }),
-            },
-        },
-
-        MuiSvgIcon: {
-            styleOverrides: {
-                root: ({ theme }) => ({
-                    color: theme.palette.icon.main,
-                }),
+                root: {
+                    backgroundColor: palette.appBar.main,
+                    color: palette.appBar.contrastText
+                },
             },
         },
 
         MuiCard: {
             styleOverrides: {
-                root: ({ theme }) => ({
-                    backgroundColor: theme.palette.card.background,
-                }),
+                root: {
+                    backgroundColor: palette.card.background,
+                },
             },
         },
 
