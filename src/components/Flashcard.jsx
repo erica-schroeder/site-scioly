@@ -4,14 +4,8 @@ import '../styles/flashcard.css';
 import { FlashcardContent } from './FlashcardContent';
 import { resolveImage } from '@/util/resolveImage';
 
-function Flashcard({ frontText, frontImage, backText }) {
+function Flashcard({ frontText, frontImageUrl, backText }) {
     const [isFlipped, setIsFlipped] = useState(false);
-    const [imageSrc, setImageSrc] = useState(null);
-
-    useEffect(() => {
-        resolveImage(frontImage).then(setImageSrc);
-    }, [frontImage]);
-
 
     return (
         <div
@@ -26,8 +20,8 @@ function Flashcard({ frontText, frontImage, backText }) {
                 }}>
                     <FlashcardContent header="Question">
                             <Stack spacing={3} justifyContent="center" sx={{ mt: -2, flex: 1 }}>
-                                {imageSrc &&
-                                    <img src={imageSrc} alt="" />
+                                {frontImageUrl &&
+                                    <img src={frontImageUrl} alt="" />
                                 }
 
                                 <Typography textAlign="center" whiteSpace="pre-wrap">

@@ -1,9 +1,12 @@
+import { useEvents } from "@/api/hooks/useEvents";
 import { manifest } from "@/flashcards/manifest";
 import { createContext, useContext, useMemo, useState } from "react";
 
 const EventContext = createContext(null);
 
 export const EventProvider = ({ children }) => {
+    const { data } = useEvents();
+    console.log("events are ", data);
     // Convert manifest into useful structures
     const { events, eventsByLevel } = useMemo(() => {
         const events = Object.entries(manifest).map(([eventId, eventData]) => ({

@@ -8,12 +8,15 @@ import CongratsCard from '@/components/CongratsCard';
 
 const FlashcardScreen = () => {
     const {
+        loading,
         currentCard,
         currentIndex,
         numCards,
         goNext,
         goPrevious,
     } = useFlashcardContext();
+
+     if (loading) return <div>Loading flashcards...</div>;
 
     const isFinished = currentIndex >= numCards;
     if (!isFinished && (currentCard === null)) {
@@ -26,7 +29,7 @@ const FlashcardScreen = () => {
                 ? <CongratsCard />
                 : <Flashcard key={currentIndex}
                     frontText={currentCard.question}
-                    frontImage={currentCard.image}
+                    frontImageUrl={currentCard.frontImageUrl}
                     backText={currentCard.answer}
                 />
             }

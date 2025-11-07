@@ -65,7 +65,7 @@ export function SelectFlashcardsPage() {
                     disableElevation
                     disabled={selectedSets.length < 1}
                     component={Link}
-                    onClick={() => loadAndShuffleSets(selectedSets)}
+                    onClick={() => loadAndShuffleSets(['72e47f0c-037f-4755-8793-21071f0e22ea'])}
                     to={`/flashcards`}
                 >
                     Start!

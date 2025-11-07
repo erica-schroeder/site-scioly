@@ -1,4 +1,4 @@
-import { setIndex } from "@/flashcards/manifest";
+import { useFlashcards } from "@/api/hooks/useFlashcards";
 import { shuffle } from "lodash-es";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -7,44 +7,25 @@ const FlashcardContext = createContext(null);
 const STORAGE_KEY = "flashcardState";
 
 export const FlashcardProvider = ({ children }) => {
-    const [flashcards, setFlashcards] = useState(() => {
-        try {
-            const stored = JSON.parse(sessionStorage.getItem(STORAGE_KEY));
-            return stored?.flashcards || [];
-        } catch (e) {
-            console.warn("Failed to parse flashcard state from storage", e);
-            return [];
-        }
-    });
+    const storedCards = JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || [];
+    const [flashcards, setFlashcards] = useState(storedCards?.flashcards ?? []);
+    const [currentIndex, setCurrentIndex] = useState(storedCards?.currentIndex ?? 0);
 
-    const [currentIndex, setCurrentIndex] = useState(() => {
-        try {
-            const stored = JSON.parse(sessionStorage.getItem(STORAGE_KEY));
-            return stored?.currentIndex ?? 0;
-        } catch (e) {
-            console.warn("Failed to parse flashcard state from storage", e);
-            return 0;
-        }
-    });
+    const { mutateAsync: loadCards, isPending } = useFlashcards();
 
-
-    // Update sessionStorage when state changes
     useEffect(() => {
         const stateToStore = {
-            flashcards,
             currentIndex,
+            flashcards,
         };
         sessionStorage.setItem(STORAGE_KEY, JSON.stringify(stateToStore));
-    }, [flashcards, currentIndex]);
-
+    }, [currentIndex, flashcards]);
 
 
     const loadAndShuffleSets = async (setIds) => {
-        const modules = await Promise.all(
-            setIds.map(id => setIndex[id].load())
-        );
-        const allCards = shuffle(modules.flatMap(m => m.default));
-        setFlashcards(allCards);
+        const cards = await loadCards(setIds);
+        const shuffled = shuffle(cards);
+        setFlashcards(shuffled);
         setCurrentIndex(0);
     };
 
@@ -63,6 +44,7 @@ export const FlashcardProvider = ({ children }) => {
     return (
         <FlashcardContext.Provider
             value={{
+                loading: isPending,
                 loadAndShuffleSets,
                 numCards,
                 currentIndex,
