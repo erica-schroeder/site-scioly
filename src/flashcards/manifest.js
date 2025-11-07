@@ -128,6 +128,10 @@ export const manifest = {
                         displayName: "Leg Types",
                         load: () => import("./entomology/anatomy/leg-types"),
                     },
+                    "wing-types": {
+                        displayName: "Wing Types",
+                        load: () => import("./entomology/anatomy/wing-types"),
+                    },
                 }
             },
         },

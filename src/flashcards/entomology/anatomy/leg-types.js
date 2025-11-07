@@ -1,12 +1,45 @@
-export default [
-    {
-        question: "What type of insect leg is this?",
-        answer: "Saltatorial (jumping)",
-        image: "jumping-leg.png"
-    },
-    {
-        question: "What type of insect leg is this?",
-        answer: "Cursorial (walking/running)",
-        image: "walking-leg.png"
-    },
-];
+export default [{
+    question: "What type of leg is this?",
+    answer: "Saltatorial (jumping)",
+    image: "jumping-leg.png"
+}, {
+    question: "What type of leg is this?",
+    answer: "Cursorial (walking/running)",
+    image: "walking-leg.png"
+}, {
+    question: "What type of leg is this?",
+    answer: "Fossorial (digging)",
+    image: "digging-leg.png"
+}, {
+    question: "What type of leg is this?",
+    answer: "Natatorial (swimming)",
+    image: "swimming-leg.png"
+}, {
+    question: "What type of leg is this?",
+    answer: "Raptorial (lets predators grasp prey)",
+    image: "raptorial-leg.png"
+}, {
+    question: "What is this part of the leg?",
+    answer: "Coxa",
+    image: "coxa.png"
+}, {
+    question: "What is this part of the leg?",
+    answer: "Trochanter",
+    image: "trochanter.png"
+}, {
+    question: "What is this part of the leg?",
+    answer: "Femur",
+    image: "femur.png"
+}, {
+    question: "What is this part of the leg?",
+    answer: "Tibia",
+    image: "tibia.png"
+}, {
+    question: "What are these parts of the leg?",
+    answer: "Tarsi (singular form is tarsus)",
+    image: "tarsi.png"
+}, {
+    question: "What is this part of the leg?",
+    answer: "Tarsal claws",
+    image: "tarsal-claws.png"
+}];
