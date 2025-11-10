@@ -29,7 +29,7 @@ const FlashcardScreen = () => {
                 ? <CongratsCard />
                 : <Flashcard key={currentIndex}
                     frontText={currentCard.question}
-                    frontImageUrl={currentCard.frontImageUrl}
+                    frontImageUrl={currentCard.frontImage}
                     backText={currentCard.answer}
                 />
             }

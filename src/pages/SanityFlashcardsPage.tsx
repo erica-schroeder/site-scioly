@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { client } from '@/api/sanity/client'
+import { sanityClient } from '@/api/sanity/client'
 import type { Flashcard } from '@/types/flashcardType'
 import imageUrlBuilder from '@sanity/image-url'
 
-const builder = imageUrlBuilder(client)
+const builder = imageUrlBuilder(sanityClient)
 
 function urlFor(source: any) {
   return builder.image(source)

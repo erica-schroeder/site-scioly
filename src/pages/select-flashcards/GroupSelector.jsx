@@ -11,19 +11,20 @@ import {
   Stack,
   Typography
 } from '@mui/material';
+import { sortBy } from 'lodash-es';
 
 export default function GroupSelector({ name, group, selectedSets, onChange }) {
-  const sets = group.sets || [];
+  const sets = sortBy(group.sets, ['title']) || [];
 
   // Determine if all sets are selected
-  const allSelected = sets.length > 0 && sets.every(s => selectedSets.includes(s.key));
+  const allSelected = sets.length > 0 && sets.every(s => selectedSets.includes(s.id));
   const someSelected = sets.some(s => selectedSets.includes(s.key)) && !allSelected;
 
   const handleSelectAll = (e) => {
     const checked = e.target.checked;
     const newSelection = checked
-      ? [...new Set([...selectedSets, ...sets.map(s => s.key)])]
-      : selectedSets.filter(key => !sets.map(s => s.key).includes(key));
+      ? [...new Set([...selectedSets, ...sets.map(s => s.id)])]
+      : selectedSets.filter(id => !sets.map(s => s.id).includes(id));
     onChange(newSelection);
   };
 
@@ -71,7 +72,7 @@ export default function GroupSelector({ name, group, selectedSets, onChange }) {
             </ListSubheader>
           }
         >
-          {group.sets.map((s) => (
+          {sets.map((s) => (
             <ListItem key={s.key}
               sx={{
                 py: 0,
@@ -79,11 +80,11 @@ export default function GroupSelector({ name, group, selectedSets, onChange }) {
               <ListItemIcon>
                 <Checkbox
                   edge="start"
-                  checked={selectedSets.includes(s.key)}
-                  onChange={handleSetChange(s.key)}
+                  checked={selectedSets.includes(s.id)}
+                  onChange={handleSetChange(s.id)}
                 />
               </ListItemIcon>
-              <ListItemText primary={s.displayName || s.key} />
+              <ListItemText primary={s.title} />
             </ListItem>
           ))}
         </List>

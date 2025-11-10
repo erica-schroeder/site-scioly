@@ -6,7 +6,7 @@ import { FlashcardContent } from './FlashcardContent';
 import { useEventContext } from '@/contexts/EventContext';
 
 function CongratsCard() {
-    const { selectedEvent } = useEventContext();
+    const { selectedEventKey } = useEventContext();
 
     return (
         <div className="flashcard" >
@@ -34,7 +34,7 @@ function CongratsCard() {
 
                             <Divider />
 
-                            <Button variant="contained" disableElevation component={Link} to={`/events/${selectedEvent.key}`}>
+                            <Button variant="contained" disableElevation component={Link} to={selectedEventKey ? `/events/${selectedEventKey}` : "/"}>
                                 Pick a new set
                             </Button>
                         </Stack>

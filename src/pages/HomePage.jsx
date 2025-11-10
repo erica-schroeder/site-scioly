@@ -7,7 +7,6 @@ export const HomePage = () => {
             <Typography variant="h4">Welcome to Romeo Science Olympiad Flashcards!</Typography>
             <Typography variant="h5">Select your event from the navigation menu to begin.</Typography>
             <Typography variant="h5">Happy studying!</Typography>
-            <SanityFlashcardsPage />
         </Stack>
     );
 }

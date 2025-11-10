@@ -9,9 +9,8 @@ import { Route, Routes } from 'react-router';
 import { useNavItems } from './useNavItems';
 
 function App() {
-  const { eventsByLevel } = useEventContext();
-  const navItems = useNavItems();
-  if(!eventsByLevel) {
+  const { navItems } = useEventContext();
+  if(!navItems) {
     return "Loading...";
   }
 

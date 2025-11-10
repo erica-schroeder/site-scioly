@@ -1,49 +1,52 @@
 import { useEvents } from "@/api/hooks/useEvents";
-import { manifest } from "@/flashcards/manifest";
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const EventContext = createContext(null);
 
 export const EventProvider = ({ children }) => {
-    const { data } = useEvents();
-    console.log("events are ", data);
-    // Convert manifest into useful structures
-    const { events, eventsByLevel } = useMemo(() => {
-        const events = Object.entries(manifest).map(([eventId, eventData]) => ({
-            key: eventId,
-            displayName: eventData.displayName,
-            level: eventData.level,
-            groups: Object.entries(eventData.groups).map(([groupId, groupData]) => ({
-                key: groupId,
-                displayName: groupData.displayName,
-                sets: Object.entries(groupData.sets).map(([setId, setData]) => ({
-                    key: setId,
-                    displayName: setData.displayName
-                }))
-            }))
-        }));
+    const [selectedEventKey, setSelectedEventKey] = useState(null);
+    const { data: levels } = useEvents();
 
-        // Build level → events map
-        const eventsByLevel = events.reduce((acc, event) => {
-            if (!acc[event.level]) acc[event.level] = [];
-            acc[event.level].push(event);
-            return acc;
-        }, {});
-
-        return { events, eventsByLevel };
+    // Load saved selection from localStorage on mount
+    useEffect(() => {
+        const savedKey = localStorage.getItem("selectedEventKey");
+        if (savedKey) setSelectedEventKey(savedKey);
     }, []);
 
+    // Persist selection to localStorage whenever it changes
+    useEffect(() => {
+        if (selectedEventKey) {
+            localStorage.setItem("selectedEventKey", selectedEventKey);
+        }
+    }, [selectedEventKey]);
 
-    // the currently selected event (default to first for convenience)
-    const [selectedEventKey, setSelectedEventKey] = useState(events[0]?.key ?? null);
-    const selectedEvent = selectedEventKey ? events.find(e => e.key === selectedEventKey) : null;
+    const navItems = levels?.map(level => ({
+        label: level.title,
+        submenu: level.events.map(event => ({
+            label: event.title,
+            to: `/events/${event.key}`
+        }))
+    })) ?? null 
+
+    const getEventByKey = (key) => {
+        if (!key) return null
+        for (const level of levels) {
+            for (const event of level.events ?? []) {
+                if (event.key === key) {
+                    return event;
+                }
+            }
+        }
+        return null
+    };
 
     return (
         <EventContext.Provider
             value={{
+                navItems,
+                getEventByKey,
                 setSelectedEventKey,
-                selectedEvent,
-                eventsByLevel,
+                selectedEventKey,
             }}
         >
             {children}

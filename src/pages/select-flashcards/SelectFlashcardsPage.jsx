@@ -7,13 +7,15 @@ import GroupSelector from './GroupSelector';
 
 export function SelectFlashcardsPage() {
     const { eventKey } = useParams();
-    const { setSelectedEventKey, selectedEvent } = useEventContext();
+    const { getEventByKey, setSelectedEventKey } = useEventContext();
     const [selectedSets, setSelectedSets] = useState([]);
     const { loadAndShuffleSets } = useFlashcardContext();
 
     useEffect(() => {
-        setSelectedEventKey(eventKey);
-    }, [eventKey, setSelectedEventKey]);
+        setSelectedEventKey(eventKey)
+    }, [eventKey])
+
+    const event = getEventByKey(eventKey);
 
     return (
         <Stack>
@@ -25,7 +27,7 @@ export function SelectFlashcardsPage() {
                     mx: 'auto',
                 }}>
                 <Typography variant="h4" sx={{ alignSelf: 'flex-start' }}>
-                    {selectedEvent?.displayName} Flashcards
+                    {event?.title} Flashcards
                 </Typography>
 
                 <Divider sx={{borderColor: 'primary.main', width: '100%', my: 2, mb: 4 }}/>
@@ -35,11 +37,12 @@ export function SelectFlashcardsPage() {
                 </Typography>
 
                 <Grid container spacing={3} justifyContent="center">
-                    {selectedEvent.groups.map((group) => (
-                        <Grid size={{ xs: 6, sm: 3 }} sx={{ minWidth: 240, maxWidth: 300 }}>
+                    {event?.groups?.map((group) => (
+                        <Grid
+                            key={group?.id}
+                            size={{ xs: 6, sm: 3 }} sx={{ minWidth: 240, maxWidth: 300 }}>
                             <GroupSelector
-                                key={group.key}
-                                name={group.displayName}
+                                name={group?.title}
                                 group={group}
                                 selectedSets={selectedSets}
                                 onChange={setSelectedSets}
@@ -65,7 +68,7 @@ export function SelectFlashcardsPage() {
                     disableElevation
                     disabled={selectedSets.length < 1}
                     component={Link}
-                    onClick={() => loadAndShuffleSets(['72e47f0c-037f-4755-8793-21071f0e22ea'])}
+                    onClick={() => loadAndShuffleSets(selectedSets)}
                     to={`/flashcards`}
                 >
                     Start!
