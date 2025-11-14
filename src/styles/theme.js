@@ -31,13 +31,14 @@ let theme = createTheme(baseTheme, {
     typography: {
         navItemPrimary: {
             color: 'black',
-            fontSize: '1.5rem',
-            fontWeight: 400,
+            fontSize: '1.25rem',
+            fontWeight: 500,
             fontFamily: 'sans-serif',
+            textTransform: 'uppercase',
         },
         navItemSecondary: {
             color: 'black',
-            fontSize: '1.25rem',
+            fontSize: '1.1rem',
             fontWeight: 400,
             fontFamily: 'sans-serif',
         },
