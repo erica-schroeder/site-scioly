@@ -1,11 +1,14 @@
-import { sanityClient } from "@/api/sanity/client";
-import { Flashcard } from "@/types/domain";
-import { normalizeFlashcards } from "@/api/sanity/normalizeSanity";
+import { sanityClient } from '@/api/sanity/client';
+import { Flashcard } from '@/types/domain';
+import { normalizeFlashcards } from '@/api/sanity/normalizeSanity';
 
-export async function fetchFlashcardsForSets(setIds: string[]): Promise<Flashcard[]> {
+export const fetchFlashcardsForSets = async (
+  setIds: string[]
+): Promise<Flashcard[]> => {
   if (!setIds?.length) return [];
 
-  const rawFlashcards = await sanityClient.fetch(`
+  const rawFlashcards = await sanityClient.fetch(
+    `
       *[_type == "flashcard" && set._ref in $setIds]{
      _id,
      question,
@@ -13,7 +16,9 @@ export async function fetchFlashcardsForSets(setIds: string[]): Promise<Flashcar
      frontImage,
      backImage,
 }
-  `, { setIds });
+  `,
+    { setIds }
+  );
 
   return normalizeFlashcards(rawFlashcards);
-}
+};

@@ -1,17 +1,17 @@
-import { sanityClient } from '@/api/sanity/client'; // your Sanity client
-import { Flashcard, Level } from "@/types/domain";
+import { sanityClient } from '@/api/sanity/client';
+import { Flashcard, Level } from '@/types/domain';
 import imageUrlBuilder from '@sanity/image-url';
 
 const builder = imageUrlBuilder(sanityClient);
 const urlFor = (source) => builder.image(source).url();
 
-export function normalizeLevels(rawLevels: any[]): Level[] {
+export const normalizeLevels = (rawLevels: any[]): Level[] => {
   return rawLevels.map((level) => ({
     id: level._id,
     title: level.title,
     events: (level.events || []).map((event: any) => ({
       id: event._id,
-      key: event.slug?.current ?? "",
+      key: event.slug?.current ?? '',
       title: event.title,
       groups: (event.groups || []).map((group: any) => ({
         id: group._id,
@@ -24,9 +24,9 @@ export function normalizeLevels(rawLevels: any[]): Level[] {
       })),
     })),
   }));
-}
+};
 
-export function normalizeFlashcards(rawFlashcards: any[]): Flashcard[] {
+export const normalizeFlashcards = (rawFlashcards: any[]): Flashcard[] => {
   return rawFlashcards.map((card) => ({
     id: card._id,
     question: card.question,
@@ -34,4 +34,4 @@ export function normalizeFlashcards(rawFlashcards: any[]): Flashcard[] {
     frontImage: card.frontImage ? urlFor(card.frontImage?.asset) : null,
     backImage: card.backImage ? urlFor(card.backImage?.asset) : null,
   }));
-}
+};

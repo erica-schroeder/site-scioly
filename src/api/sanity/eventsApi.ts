@@ -1,8 +1,8 @@
-import { sanityClient } from "@/api/sanity/client";
-import { Level } from "@/types/domain";
-import { normalizeLevels } from "@/api/sanity/normalizeSanity";
+import { sanityClient } from '@/api/sanity/client';
+import { Level } from '@/types/domain';
+import { normalizeLevels } from '@/api/sanity/normalizeSanity';
 
-export async function fetchLevels(): Promise<Level[]> {
+export const fetchLevels = async (): Promise<Level[]> => {
   const rawLevels = await sanityClient.fetch(`
 *[_type == "level"] | order(title asc){
   _id,
@@ -24,4 +24,4 @@ export async function fetchLevels(): Promise<Level[]> {
   `);
 
   return normalizeLevels(rawLevels);
-}
+};

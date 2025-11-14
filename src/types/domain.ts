@@ -11,7 +11,7 @@ export interface Group {
 
 export interface Event {
   id: string;
-  key: string;  // Used for routing path param and CMS slugs
+  key: string; // Used for routing path param and CMS slugs
   title: string;
   groups: Group[];
 }
